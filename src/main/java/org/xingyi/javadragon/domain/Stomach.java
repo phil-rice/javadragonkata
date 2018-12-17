@@ -1,9 +1,12 @@
 package org.xingyi.javadragon.domain;
 
+import org.xingyi.javadragon.Lens;
+
 import java.util.List;
 import java.util.Objects;
 
 public class Stomach {
+    public static Lens<Stomach, List<Object>> contentsL = new Lens<>(s -> s.contents, (s, c) -> s.withContents(c));
     final List<Object> contents;
 
     public Stomach(List<Object> contents) {

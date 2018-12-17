@@ -1,10 +1,13 @@
 package org.xingyi.javadragon.domain;
 
+import org.xingyi.javadragon.Lens;
+
 import java.util.Objects;
 
 public class Chest {
     final Stomach stomach;
     final Heart heart;
+    public static Lens<Chest, Stomach> stomachL = new Lens<>(c -> c.stomach, (c, s) -> c.withStomach(s));
 
     public Chest(Stomach stomach, Heart heart) {
         this.stomach = stomach;

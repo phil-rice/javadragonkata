@@ -1,22 +1,28 @@
 package org.xingyi.javadragon.domain;
 
 
+import org.xingyi.javadragon.Lens;
+
+import java.util.List;
 import java.util.Objects;
 
 public class Dragon {
     final Chest chest;
     final Head head;
 
+    public static Lens<Dragon, Chest> chestL = new Lens<>(d -> d.chest, (d, c) -> d.withChest(c));
+    public static Lens<Dragon, List<Object>> contentsL = Dragon.chestL.andThen(Chest.stomachL).andThen(Stomach.contentsL);
+
     public Dragon(Chest chest, Head head) {
         this.chest = chest;
         this.head = head;
     }
 
-    public Dragon withChest(Chest chest){
+    public Dragon withChest(Chest chest) {
         return new Dragon(chest, head);
     }
 
-    public Dragon withHead(Head head){
+    public Dragon withHead(Head head) {
         return new Dragon(chest, head);
     }
 

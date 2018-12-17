@@ -3,7 +3,7 @@ package org.xingyi.javadragon;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-class Lens<A, B> {
+public class Lens<A, B> {
     public Function<A, B> getFn;
     public BiFunction<A, B, A> setFn;
 
