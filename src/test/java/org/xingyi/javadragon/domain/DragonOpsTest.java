@@ -15,8 +15,8 @@ public class DragonOpsTest {
 
 
     DragonOps dragonOps = new DragonOps();
-    Dragon dragonOne = new Dragon(new Chest(new Stomach(Arrays.asList(item1)), new Heart(60)), new Head(200));
-    Dragon dragonOneTwo = new Dragon(new Chest(new Stomach(Arrays.asList(item1, item2)), new Heart(60)), new Head(200));
+    Dragon dragonOne = new Dragon(new Body(new Chest(new Stomach(Arrays.asList(item1)), new Heart(60))), new Head(200));
+    Dragon dragonOneTwo = new Dragon(new Body(new Chest(new Stomach(Arrays.asList(item1, item2)), new Heart(60))), new Head(200));
 
     @Test
     public void testEat() {

@@ -7,31 +7,33 @@ import java.util.List;
 import java.util.Objects;
 
 public class Dragon {
-    final Chest chest;
+    final Body body;
     final Head head;
-
-    public static Lens<Dragon, Chest> chestL = new Lens<>(d -> d.chest, (d, c) -> d.withChest(c));
-    public static Lens<Dragon, List<Object>> contentsL = Dragon.chestL.andThen(Chest.stomachL).andThen(Stomach.contentsL);
-
-    public Dragon(Chest chest, Head head) {
-        this.chest = chest;
-        this.head = head;
-    }
-
-    public Dragon withChest(Chest chest) {
-        return new Dragon(chest, head);
-    }
-
-    public Dragon withHead(Head head) {
-        return new Dragon(chest, head);
-    }
 
     @Override
     public String toString() {
         return "Dragon{" +
-                "chest=" + chest +
+                "body=" + body +
                 ", head=" + head +
                 '}';
+    }
+
+    public Dragon(Body body, Head head) {
+        this.body = body;
+        this.head = head;
+    }
+
+
+    public static Lens<Dragon, Body> bodyL = new Lens<>(d -> d.body, (d, b) -> d.withBody(b));
+    public static Lens<Dragon, List<Object>> contentsL = Dragon.bodyL.andThen(Body.chestL).andThen(Chest.stomachL).andThen(Stomach.contentsL);
+
+
+    public Dragon withBody(Body body) {
+        return new Dragon(body, head);
+    }
+
+    public Dragon withHead(Head head) {
+        return new Dragon(body, head);
     }
 
     @Override
@@ -39,12 +41,12 @@ public class Dragon {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Dragon dragon = (Dragon) o;
-        return Objects.equals(chest, dragon.chest) &&
+        return Objects.equals(body, dragon.body) &&
                 Objects.equals(head, dragon.head);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(chest, head);
+        return Objects.hash(body, head);
     }
 }
