@@ -1,5 +1,7 @@
 package org.xingyi.javadragon.domain;
 
+import java.util.Objects;
+
 public class Chest {
     final Stomach stomach;
     final Heart heart;
@@ -14,5 +16,27 @@ public class Chest {
     }
     public Chest withHeart(Heart heart){
         return new Chest(stomach, heart);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Chest chest = (Chest) o;
+        return Objects.equals(stomach, chest.stomach) &&
+                Objects.equals(heart, chest.heart);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(stomach, heart);
+    }
+
+    @Override
+    public String toString() {
+        return "Chest{" +
+                "stomach=" + stomach +
+                ", heart=" + heart +
+                '}';
     }
 }
